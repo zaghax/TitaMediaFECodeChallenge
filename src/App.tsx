@@ -1,27 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import useHttp from './utils/hooks/useHttp';
+import { usersDataTypes } from './types/types';
+
+
 
 function App() {
 
-  const APIKEY = process.env.REACT_APP_DUMMYAPIKEY;
+  const {data, isLoading, error} = useHttp('user');
 
-  const fetchData = async () => {
-    const request = await fetch('https://dummyapi.io/data/v1/user/60d0fe4f5311236168a109d6/post', {
-      headers: {
-        'app-id': APIKEY || ''
-      }
-    });
-
-    const data = await request.json();
-    console.log(data);
-  } 
+  const [dataUsers, setUsersData] = useState<usersDataTypes>();
 
   useEffect(() => {
-    fetchData();
-  },[])
+    setUsersData(data)
+  },[data])
 
   return (
     <div className="App">
-     <h1>Hi Test {APIKEY} </h1>
+      {!isLoading && !error && <h1>Hi Test {dataUsers?.data.length}</h1>}
+      {isLoading && <h1>Loading...</h1>}
+      {error && <h1>Upps, Something went wrong: {error}</h1>}
     </div>
   );
 }
