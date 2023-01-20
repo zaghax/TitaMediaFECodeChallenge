@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
 
 function App() {
+
+  const APIKEY = process.env.REACT_APP_DUMMYAPIKEY;
+
+  const fetchData = async () => {
+    const request = await fetch('https://dummyapi.io/data/v1/user/60d0fe4f5311236168a109d6/post', {
+      headers: {
+        'app-id': APIKEY || ''
+      }
+    });
+
+    const data = await request.json();
+    console.log(data);
+  } 
+
+  useEffect(() => {
+    fetchData();
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Hi Test {APIKEY} </h1>
     </div>
   );
 }
