@@ -1,25 +1,40 @@
 export interface userDataTypes {
-    firstName?: string,
-    id?: string,
-    lasName?: string,
-    picture?: string,
-    title?: string
+  firstName?: string
+  id?: string
+  lasName?: string
+  picture?: string
+  title?: string
 }
 
 export interface postDataTypes {
-    id?: string,
-    image?: string,
-    likes?: number,
-    owner?: userDataTypes,
-    publishDate?: string,
-    tags?: string[],
-    text?: string
+  id?: string
+  image?: string
+  likes?: number
+  owner?: userDataTypes
+  publishDate?: string
+  tags?: string[]
+  text?: string
+}
+
+export interface commentDataTypes {
+  id?: string
+  message?: string
+  owner?: userDataTypes
+  post?: string
+  publishDate: string
 }
 
 export interface responseDataTypes {
-    data: userDataTypes[] | postDataTypes[],
-    limit: number,
-    page: number,
-    total: number,
-    error: string
+  data?: dataResponseTypes
+  limit?: number
+  page?: number
+  total?: number
+  error?: string
 }
+
+export interface StoreState {
+  tagSelected: string
+  postDataResponse: responseDataTypes | undefined
+}
+
+export type responseDataArrayTypes = userDataTypes[] | postDataTypes[] | commentDataTypes[];

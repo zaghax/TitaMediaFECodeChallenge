@@ -1,32 +1,31 @@
-import React, {useEffect, useState} from 'react';
-import Post from '../Post/Post';
-import useHttp from '../../utils/hooks/useHttp';
-import { responseDataTypes } from '../../types/types';
+import { useEffect, useState, useContext } from 'react'
+import Post from '../Post/Post'
+import { StoreContext } from '../../store/StoreContext'
 import { PostContainer } from './PostList.styles'
+import { responseDataArrayTypes } from '../../types/types'
 
 const PostList = () => {
-    const {response, isLoading, error} = useHttp('post');
+  const { store } = useContext(StoreContext)
+  const { postDataResponse } = store
+  const [postList, setPostList] = useState<responseDataArrayTypes>()
 
-    const [dataResponse, setDataReponse] = useState<responseDataTypes>();
-    const posts = dataResponse?.data;
+  useEffect(() => {
+    if (postDataResponse) {
+      setPostList(postDataResponse?.data)
+    }
+  }, [postDataResponse])
 
-    useEffect(() => {
-        setDataReponse(response);
-        console.log(response);
-    },[response])
-
-    return (
-        <PostContainer>
-            {!isLoading && !error && (
-                <>
-                    <h1>Hi Test {dataResponse?.data?.length}</h1>
-                    {posts?.map(post => <Post key={post.id} data={post}/>)}
-                </>)
-            }
-            {isLoading && <h1>Loading...</h1>}
-            {error && <h1>Upps, Something went wrong: {error}</h1>}
-        </PostContainer>
-    );
+  return (
+    <PostContainer>
+      {postList && (
+        <>
+          {postList.map((post) => (
+            <Post key={post.id} data={post} />
+          ))}
+        </>
+      )}
+    </PostContainer>
+  )
 }
 
-export default PostList;
+export default PostList
