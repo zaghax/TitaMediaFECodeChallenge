@@ -1,18 +1,25 @@
 export interface userDataTypes {
-    firstName: string,
-    id: string,
-    lasName: string,
-    picture: string,
-    title: string
+    firstName?: string,
+    id?: string,
+    lasName?: string,
+    picture?: string,
+    title?: string
 }
 
-export interface usersDataTypes {
-    data: userDataTypes[],
+export interface postDataTypes {
+    id?: string,
+    image?: string,
+    likes?: number,
+    owner?: userDataTypes,
+    publishDate?: string,
+    tags?: string[],
+    text?: string
+}
+
+export interface responseDataTypes {
+    data: userDataTypes[] | postDataTypes[],
     limit: number,
     page: number,
-    total: number
-}
-
-export interface errorTypes {
-    error?: string
+    total: number,
+    error: string
 }

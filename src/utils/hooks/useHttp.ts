@@ -1,53 +1,56 @@
-import { useEffect, useState } from 'react';
-import { API_BASE_URL } from '../constants';
-import { errorTypes, usersDataTypes } from '../../types/types';
+import { useEffect, useState } from 'react'
+import { API_BASE_URL } from '../constants'
+import { responseDataTypes } from '../../types/types'
 
-
-type params = string;
+type params = string
 type apiType = string | undefined
 
-const useHttp = (URL_PARAMS:params) => {
+const useHttp = (URL_PARAMS: params) => {
+  const APIKEY: apiType = process.env.REACT_APP_DUMMYAPIKEY
+  const [response, setResponse] = useState<responseDataTypes>()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string>('')
+  const URL = `${API_BASE_URL}${URL_PARAMS}`
 
-    const APIKEY:apiType  = process.env.REACT_APP_DUMMYAPIKEY;
-    const [data, setData] = useState();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string>('');
+  const fetchData = async () => {
+    const controller = new AbortController()
 
-    const fetchData = async () => {
-        try{
+    try {
+      const response: Response = await fetch(URL, {
+        headers: {
+          'app-id': APIKEY || '',
+        },
+      })
 
-            const request = await fetch(`${API_BASE_URL}${URL_PARAMS}`, {
-                headers: {
-                'app-id': APIKEY || ''
-                }
-            });
+      if (!response.ok) {
+        throw new Error('Something went wrong with the service!')
+      }
 
-            const fetchData = await request.json();
-
-            if(fetchData.error){
-                setError(fetchData.error)
-            }else {
-                setData(fetchData);
-            }
-            
-            setIsLoading(false);
-
-        } catch (error:any){
-            console.log(error)
-            setError('Failed to fetch!')
-            setIsLoading(false);
+      response.json().then((data: responseDataTypes) => {
+        if (data?.error) {
+          setError(data?.error)
+        } else {
+          setResponse(data)
         }
-        
-    } 
+      })
 
-    useEffect(() => {
-        fetchData();
-    },[]) 
+      setIsLoading(false)
+    } catch (error: any) {
+      console.log(error)
+      setError(error.message || 'Failed to fetch!')
+      setIsLoading(false)
+    }
 
-    return {data, isLoading, error}
+    return () => {
+      controller.abort()
+    }
+  }
 
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  return { response, isLoading, error }
 }
 
-
-
-export default useHttp;
+export default useHttp
