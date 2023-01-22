@@ -1,7 +1,7 @@
 export interface userDataTypes {
   firstName?: string
   id?: string
-  lasName?: string
+  lastName?: string
   picture?: string
   title?: string
 }
@@ -32,12 +32,40 @@ export interface responseDataTypes {
   error?: string
 }
 
+export interface responseDataTypes {
+  id?: string
+  title?: string
+  firstName?: string
+  lastName?: string
+  picture?: string
+  gender?: string
+  email?: string
+  dateOfBirth?: string
+  phone?: string
+  location?: {
+    street?: string
+    city?: string
+    state?: string
+    country?: string
+    timezone?: string
+  }
+  registerDate?: string
+  updatedDate?: string
+}
+
+export interface responseDataTypes {
+  error?: string
+}
+
+
 export interface StoreState {
   tagSelected: string
   postDataResponse: responseDataTypes | undefined
   selectedComments: responseDataTypes | undefined
   selectedPost: postDataTypes | undefined
   isCommentsModalOpen: boolean
+  isUserDetailsModalOpen: boolean
+  selectedUserDetails: responseDataTypes | undefined
 }
 
 export type responseDataArrayTypes = userDataTypes[] | postDataTypes[] | commentDataTypes[];

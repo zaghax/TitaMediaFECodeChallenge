@@ -33,7 +33,7 @@ const CommentsModal = () => {
             <ModalHeader>
               <img src={selectedPost.owner?.picture} alt={selectedPost.owner?.firstName} />
               <p>
-                {selectedPost.owner?.firstName} {selectedPost.owner?.lasName}
+                {selectedPost.owner?.firstName} {selectedPost.owner?.lastName}
               </p>
             </ModalHeader>
             <hr role='separator' />

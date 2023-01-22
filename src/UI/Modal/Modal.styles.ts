@@ -46,7 +46,8 @@ export const BackdropWrapper = styled.div`
 export const ModalOverlayWrapper = styled.div`
   position: fixed;
   background-color: ${({ theme }) => theme.colors.colorWhite};
-  width: 70vw;
+  width: 90%;
+  max-width: 800px;
   height: auto;
   z-index: 99;
   top: 50%;

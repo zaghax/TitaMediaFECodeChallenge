@@ -5,7 +5,9 @@ const initialStore: StoreState = {
   postDataResponse: {},
   selectedComments: {},
   selectedPost: {},
-  isCommentsModalOpen: false
+  isCommentsModalOpen: false,
+  isUserDetailsModalOpen: false,
+  selectedUserDetails: {},
 }
 
 export type ActionsType =
@@ -13,6 +15,8 @@ export type ActionsType =
   | { type: 'setSelectedComments'; payload: responseDataTypes | undefined }
   | { type: 'setSelectedPost'; payload: postDataTypes | undefined }
   | { type: 'setIsCommentsModalOpen'; payload: boolean }
+  | { type: 'setIsUserDetailsModalOpen'; payload: boolean }
+  | { type: 'setSelectedUserDetails'; payload: responseDataTypes | undefined }
 
 const storeReducer = (state: StoreState, action: ActionsType): StoreState => {
   switch (action.type) {
@@ -35,6 +39,16 @@ const storeReducer = (state: StoreState, action: ActionsType): StoreState => {
       return {
         ...state,
         isCommentsModalOpen: action.payload,
+      }
+    case 'setIsUserDetailsModalOpen':
+      return {
+        ...state,
+        isUserDetailsModalOpen: action.payload,
+      }
+    case 'setSelectedUserDetails':
+      return {
+        ...state,
+        selectedUserDetails: action.payload,
       }
     default:
       return state

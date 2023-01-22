@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
 import { StoreContext } from '../../store/StoreContext'
 import Tag from '../Tag/Tag'
+import PostHeader from './PostHeader'
 import useHttp from '../../utils/hooks/useHttp'
 import { postDataTypes, responseDataTypes } from '../../types/types'
-import { PostWrapper, PostImage, PostHeader, PostFooter, PostComments } from './Post.styles'
+import { PostWrapper, PostImage, PostFooter, PostComments } from './Post.styles'
 
 interface propTypes {
   data: postDataTypes
@@ -14,7 +15,7 @@ const Posts = ({ data }: propTypes) => {
   const [postComments, setPostComments] = useState<responseDataTypes>()
   const [postLength, setPostLength] = useState<number>(0)
   const { dispatch } = useContext(StoreContext)
-  const path = `user/${data.owner?.id}/comment`
+  const commentsPath = `user/${data.owner?.id}/comment`
 
   const setSelectedComments = () => {
     dispatch({ type: 'setSelectedComments', payload: postComments })
@@ -23,7 +24,7 @@ const Posts = ({ data }: propTypes) => {
   }
 
   useEffect(() => {
-    getData(path)
+    getData(commentsPath)
   }, [])
 
   useEffect(() => {
@@ -35,12 +36,7 @@ const Posts = ({ data }: propTypes) => {
 
   return (
     <PostWrapper>
-      <PostHeader>
-        <img src={data.owner?.picture} alt={data.owner?.firstName} />
-        <p>
-          {data.owner?.firstName} {data.owner?.lasName}
-        </p>
-      </PostHeader>
+      <PostHeader headerData={data?.owner}/>
       <PostImage>
         <img src={data.image} alt={data.text} />
       </PostImage>

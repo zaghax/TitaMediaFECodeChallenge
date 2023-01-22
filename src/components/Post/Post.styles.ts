@@ -14,27 +14,6 @@ export const PostImage = styled.div`
   }
 `
 
-export const PostHeader = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  margin-bottom: 8px;
-
-  img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-
-  p {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 14px;
-  }
-`
-
 export const PostFooter = styled.div`
   padding: 10px 10px 0;
 
