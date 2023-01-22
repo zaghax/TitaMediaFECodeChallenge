@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { StoreContext } from '../../store/StoreContext'
 import Tag from '../Tag/Tag'
 import useHttp from '../../utils/hooks/useHttp'
-import { postDataTypes, responseDataArrayTypes } from '../../types/types'
-import { PostWrapper, PostImage, PostHeader, PostFooter } from './Post.styles'
+import { postDataTypes, responseDataTypes } from '../../types/types'
+import { PostWrapper, PostImage, PostHeader, PostFooter, PostComments } from './Post.styles'
 
 interface propTypes {
   data: postDataTypes
@@ -10,8 +11,16 @@ interface propTypes {
 
 const Posts = ({ data }: propTypes) => {
   const { response, isLoading, error, getData } = useHttp()
-  const [postComments, setPostComments] = useState<responseDataArrayTypes>()
+  const [postComments, setPostComments] = useState<responseDataTypes>()
+  const [postLength, setPostLength] = useState<number>(0)
+  const { dispatch } = useContext(StoreContext)
   const path = `user/${data.owner?.id}/comment`
+
+  const setSelectedComments = () => {
+    dispatch({ type: 'setSelectedComments', payload: postComments })
+    dispatch({ type: 'setSelectedPost', payload: data })
+    dispatch({ type: 'setIsCommentsModalOpen', payload: true })
+  }
 
   useEffect(() => {
     getData(path)
@@ -19,7 +28,8 @@ const Posts = ({ data }: propTypes) => {
 
   useEffect(() => {
     if (!isLoading && !error && response) {
-      setPostComments(response?.data)
+      setPostLength(response?.data.length)
+      setPostComments(response)
     }
   }, [isLoading, error, response])
 
@@ -46,7 +56,7 @@ const Posts = ({ data }: propTypes) => {
             <Tag key={tag} data={tag} />
           ))}
         </p>
-        <p>Look {postComments?.length} comments</p>
+        <PostComments onClick={setSelectedComments}>Look {postLength} comments</PostComments>
       </PostFooter>
       <hr role='separator' />
     </PostWrapper>

@@ -35,6 +35,9 @@ export interface responseDataTypes {
 export interface StoreState {
   tagSelected: string
   postDataResponse: responseDataTypes | undefined
+  selectedComments: responseDataTypes | undefined
+  selectedPost: postDataTypes | undefined
+  isCommentsModalOpen: boolean
 }
 
 export type responseDataArrayTypes = userDataTypes[] | postDataTypes[] | commentDataTypes[];

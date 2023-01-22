@@ -17,7 +17,7 @@ export default createGlobalStyle<GlobalProps>`
     }
 
     *, *:before, *:after {
-        box-sizing: inherit;
+        box-sizing: border-box;
     }
 
     body {
