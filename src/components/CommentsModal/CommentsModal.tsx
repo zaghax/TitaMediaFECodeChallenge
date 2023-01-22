@@ -40,7 +40,7 @@ const CommentsModal = () => {
             <ModalContent>
               <ul>
                 {selectedComments?.data.map((comment: commentDataTypes) => (
-                  <Comment key={comment.id} commentData={comment}/>
+                  <Comment key={comment.id} commentData={comment} />
                 ))}
               </ul>
             </ModalContent>

@@ -8,7 +8,7 @@ const useSetPostList = () => {
 
   const setPostList: (requestPath: string) => void = useCallback((requestPath) => {
     getData(requestPath)
-  },[])
+  }, [])
 
   useEffect(() => {
     if (!isLoading && !error && response) {

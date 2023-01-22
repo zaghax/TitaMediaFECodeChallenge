@@ -36,7 +36,7 @@ const Posts = ({ data }: propTypes) => {
 
   return (
     <PostWrapper>
-      <PostHeader headerData={data?.owner}/>
+      <PostHeader headerData={data?.owner} />
       <PostImage>
         <img src={data.image} alt={data.text} />
       </PostImage>

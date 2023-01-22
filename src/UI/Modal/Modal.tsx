@@ -4,6 +4,7 @@ import { BackdropWrapper, ModalOverlayWrapper } from './Modal.styles'
 interface ChildrenTypes {
   children?: React.ReactNode
   onClose?: () => void
+  size?: string
 }
 
 interface BackdropPropTypes {
@@ -20,17 +21,17 @@ const Backdrop = ({ onClose }: BackdropPropTypes) => {
   )
 }
 
-const ModalOverlay = ({ children }: ChildrenTypes) => {
-  return <ModalOverlayWrapper>{children}</ModalOverlayWrapper>
+const ModalOverlay = ({ children, size }: ChildrenTypes) => {
+  return <ModalOverlayWrapper size={size}>{children}</ModalOverlayWrapper>
 }
 
 const rootOverlay = document.getElementById('overlay-root') as HTMLElement
 
-const Modal = ({ children, onClose }: ChildrenTypes) => {
+const Modal = ({ children, onClose, size }: ChildrenTypes) => {
   return (
     <>
       {ReactDOM.createPortal(<Backdrop onClose={onClose} />, rootOverlay)}
-      {ReactDOM.createPortal(<ModalOverlay>{children}</ModalOverlay>, rootOverlay)}
+      {ReactDOM.createPortal(<ModalOverlay size={size}>{children}</ModalOverlay>, rootOverlay)}
     </>
   )
 }

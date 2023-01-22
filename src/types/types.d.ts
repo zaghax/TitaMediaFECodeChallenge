@@ -57,7 +57,6 @@ export interface responseDataTypes {
   error?: string
 }
 
-
 export interface StoreState {
   tagSelected: string
   postDataResponse: responseDataTypes | undefined
@@ -68,4 +67,4 @@ export interface StoreState {
   selectedUserDetails: responseDataTypes | undefined
 }
 
-export type responseDataArrayTypes = userDataTypes[] | postDataTypes[] | commentDataTypes[];
+export type responseDataArrayTypes = userDataTypes[] | postDataTypes[] | commentDataTypes[]
