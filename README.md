@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# TITA Media UI Testing Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demo challenge site for Zomoga.\
+For a quick preview please visit: https://superb-frangollo-209844.netlify.app
 
-## Available Scripts
+This site was builded using React and Typescript, you can install and run this site following the steps below:
 
-In the project directory, you can run:
+## Step 1
 
+Make sure you have installed Node Js in your local machine.\
+Install all the node packages of this project using NPM and running the following command in your terminal console:
+### `npm install`
+
+## Step 2
+
+Run this application usign the following command: 
 ### `npm start`
 
-Runs the app in the development mode.\
+It Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## This site is builded using the following packages
 
-### `npm run build`
+### Styled components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Used to add all the css styles on this page. \
+For more info please refer to https://styled-components.com/docs
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## For cleaning code this project use the following linters
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Eslint
 
-### `npm run eject`
+Used to keep clean the javascrip and typescrip code.\
+For more info please refer to https://eslint.org/docs/latest/user-guide/configuring/
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prettier
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Used as a code formatter.\
+For more info please refer to https://prettier.io/docs/en/editors.html
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Acceptance Criteria
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. [X] Log in using an external autheticator (Google, Facebook, and so on...).
+2. [X] Show posts in home
+3. [X] Each post should show: picture and user name post's creator, text and picture's post, post's tags , likes length and comments.
+4. [X] It should show a modal with all comments.
+5. [X] It should show a modal with all user information.
+6. [X] It should sort the posts list by tag.
+7. [X] The logged user information should be shown in header.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This code was developed by:
+ 
+Giovanni Ortega Arias\
+Front-End Developer\
+Email: giortega@giorttega.com\
+Linkedin: https://www.linkedin.com/in/giovanni-ortega-arias
