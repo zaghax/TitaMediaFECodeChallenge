@@ -12,7 +12,7 @@ interface propTypes {
 
 const Posts = ({ data }: propTypes) => {
   const { response, isLoading, error, getData } = useHttp()
-  const [postComments, setPostComments] = useState<responseDataTypes>()
+  const [postComments, setPostComments] = useState<responseDataTypes | null>()
   const [postLength, setPostLength] = useState<number>(0)
   const { dispatch } = useContext(StoreContext)
   const commentsPath = `user/${data.owner.id}/comment`
