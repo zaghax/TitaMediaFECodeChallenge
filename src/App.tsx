@@ -7,6 +7,7 @@ import useSetPostList from './utils/hooks/useSetPostList'
 import { LoginSocialGoogle } from 'reactjs-social-login'
 import { GoogleLoginButton } from 'react-social-login-buttons'
 import Header from './UI/Header/Header'
+import { LoginSocialWrapper } from './styles/LoginSocialWrapper.styles'
 
 function App() {
   const { setPostList } = useSetPostList()
@@ -37,18 +38,20 @@ function App() {
       <Header />
       <main>
         {!loggedUserInfo ? (
-          <LoginSocialGoogle
-            client_id={process.env.REACT_APP_G_OAUTH_ID || ''}
-            onResolve={({ data }) => {
-              setProfile(data)
-            }}
-            onReject={(err) => {
-              console.log(err)
-            }}
-            scope='openid profile email'
-          >
-            <GoogleLoginButton />
-          </LoginSocialGoogle>
+          <LoginSocialWrapper>
+            <LoginSocialGoogle
+              client_id={process.env.REACT_APP_G_OAUTH_ID || ''}
+              onResolve={({ data }) => {
+                setProfile(data)
+              }}
+              onReject={(err) => {
+                console.log(err)
+              }}
+              scope='openid profile email'
+            >
+              <GoogleLoginButton />
+            </LoginSocialGoogle>
+          </LoginSocialWrapper>
         ) : (
           <>
             <PostList />
