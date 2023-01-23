@@ -18,7 +18,10 @@ const UserTools = () => {
           <strong>Hi! {loggedUserInfo.givenName}</strong>
           <ProfileActions>
             <img
-              src={loggedUserInfo.picture || 'https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png'}
+              src={
+                loggedUserInfo.picture ||
+                'https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png'
+              }
               alt={loggedUserInfo.givenName}
             />
             <button type='button' onClick={logoutHandler}>

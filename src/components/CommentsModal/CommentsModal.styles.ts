@@ -7,7 +7,7 @@ export const CommentsModalWrapper = styled.div`
 `
 
 export const ModalWrapperLeft = styled.div`
-  width: 40%;
+  width: 60%;
   display: flex;
   align-items: center;
   img {
@@ -17,7 +17,7 @@ export const ModalWrapperLeft = styled.div`
 `
 
 export const ModalWrapperRight = styled.div`
-  width: 60%;
+  width: 40%;
   padding: 16px;
   display: flex;
   flex-direction: column;

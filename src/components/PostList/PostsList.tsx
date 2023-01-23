@@ -17,12 +17,14 @@ const PostList = () => {
 
   return (
     <PostContainer>
-      {postList && (
+      {postList && postList.length > 0 ? (
         <>
           {postList.map((post) => (
             <Post key={post.id} data={post} />
           ))}
         </>
+      ):(
+        <h1>There are no posts!</h1>
       )}
     </PostContainer>
   )
