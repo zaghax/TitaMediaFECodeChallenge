@@ -3,11 +3,11 @@ import { StoreContext } from '../../store/StoreContext'
 import Tag from '../Tag/Tag'
 import PostHeader from './PostHeader'
 import useHttp from '../../utils/hooks/useHttp'
-import { postDataTypes, responseDataTypes } from '../../types/types'
+import { responseDataArrayTypes, responseDataTypes } from '../../types/types'
 import { PostWrapper, PostImage, PostFooter, PostComments } from './Post.styles'
 
 interface propTypes {
-  data: postDataTypes
+  data: responseDataArrayTypes
 }
 
 const Posts = ({ data }: propTypes) => {
@@ -15,7 +15,7 @@ const Posts = ({ data }: propTypes) => {
   const [postComments, setPostComments] = useState<responseDataTypes>()
   const [postLength, setPostLength] = useState<number>(0)
   const { dispatch } = useContext(StoreContext)
-  const commentsPath = `user/${data.owner?.id}/comment`
+  const commentsPath = `user/${data.owner.id}/comment`
 
   const setSelectedComments = () => {
     dispatch({ type: 'setSelectedComments', payload: postComments })
@@ -29,7 +29,7 @@ const Posts = ({ data }: propTypes) => {
 
   useEffect(() => {
     if (!isLoading && !error && response) {
-      setPostLength(response?.data.length)
+      setPostLength(response.data.length)
       setPostComments(response)
     }
   }, [isLoading, error, response])

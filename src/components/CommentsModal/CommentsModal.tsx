@@ -10,15 +10,15 @@ import {
   ModalFooter,
   ModalContent,
 } from './CommentsModal.styles'
-import { commentDataTypes } from '../../types/types'
+import { responseDataArrayTypes } from '../../types/types'
 
 const CommentsModal = () => {
   const { store, dispatch } = useContext(StoreContext)
   const { selectedPost, selectedComments } = store
 
   const closeModalHandler = () => {
-    dispatch({ type: 'setSelectedComments', payload: {} })
-    dispatch({ type: 'setSelectedPost', payload: {} })
+    dispatch({ type: 'setSelectedComments', payload: null })
+    dispatch({ type: 'setSelectedPost', payload: null })
     dispatch({ type: 'setIsCommentsModalOpen', payload: false })
   }
 
@@ -31,18 +31,20 @@ const CommentsModal = () => {
           </ModalWrapperLeft>
           <ModalWrapperRight>
             <ModalHeader>
-              <img src={selectedPost.owner?.picture} alt={selectedPost.owner?.firstName} />
+              <img src={selectedPost.owner.picture} alt={selectedPost.owner.firstName} />
               <p>
-                {selectedPost.owner?.firstName} {selectedPost.owner?.lastName}
+                {selectedPost.owner.firstName} {selectedPost.owner.lastName}
               </p>
             </ModalHeader>
             <hr role='separator' />
             <ModalContent>
-              <ul>
-                {selectedComments?.data.map((comment: commentDataTypes) => (
-                  <Comment key={comment.id} commentData={comment} />
-                ))}
-              </ul>
+              {selectedComments && (
+                <ul>
+                  {selectedComments.data.map((comment: responseDataArrayTypes) => (
+                    <Comment key={comment.id} commentData={comment} />
+                  ))}
+                </ul>
+              )}
             </ModalContent>
             <hr role='separator' />
             <ModalFooter>

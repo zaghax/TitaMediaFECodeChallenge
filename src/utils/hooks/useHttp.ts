@@ -27,8 +27,8 @@ const useHttp = () => {
       }
 
       response.json().then((data: responseDataTypes) => {
-        if (data?.error) {
-          setError(data?.error)
+        if (data.error) {
+          setError(data.error)
         } else {
           setResponse(data)
         }

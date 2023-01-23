@@ -7,11 +7,11 @@ import { responseDataArrayTypes } from '../../types/types'
 const PostList = () => {
   const { store } = useContext(StoreContext)
   const { postDataResponse } = store
-  const [postList, setPostList] = useState<responseDataArrayTypes>()
+  const [postList, setPostList] = useState<responseDataArrayTypes[]>()
 
   useEffect(() => {
     if (postDataResponse) {
-      setPostList(postDataResponse?.data)
+      setPostList(postDataResponse.data)
     }
   }, [postDataResponse])
 

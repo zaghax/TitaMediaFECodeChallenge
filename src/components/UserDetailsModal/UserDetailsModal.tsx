@@ -6,29 +6,29 @@ import { UserModalWrapper, ModalHeader, ModalContent } from './UserDetailsModal.
 const UserDetailsModal = () => {
   const { store, dispatch } = useContext(StoreContext)
   const { selectedUserDetails } = store
-  const [age, setAge] = useState<number>(0);
+  const [age, setAge] = useState<number>(0)
 
   const closeModalHandler = () => {
-    dispatch({ type: 'setSelectedUserDetails', payload: {} })
+    dispatch({ type: 'setSelectedUserDetails', payload: null })
     dispatch({ type: 'setIsUserDetailsModalOpen', payload: false })
   }
 
   const getAge = () => {
-    const now = new Date();
-    const dateOfBirth = selectedUserDetails?.dateOfBirth !== undefined ? selectedUserDetails?.dateOfBirth : '';
+    const now = new Date()
+    const dateOfBirth =
+      selectedUserDetails?.dateOfBirth !== undefined ? selectedUserDetails?.dateOfBirth : ''
     const formatedDOB = new Date(dateOfBirth)
-    const resultTime = now.getTime() - formatedDOB.getTime();
+    const resultTime = now.getTime() - formatedDOB.getTime()
     const age = Math.round(resultTime / 31536000000)
     setAge(age)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getAge()
-  },[])
- 
+  }, [])
 
   return (
-    <Modal onClose={closeModalHandler} size="small">
+    <Modal onClose={closeModalHandler} size='small'>
       {selectedUserDetails && (
         <UserModalWrapper>
           <ModalHeader>
@@ -51,7 +51,7 @@ const UserDetailsModal = () => {
               <strong>Phone:</strong> {selectedUserDetails.phone}
             </p>
             <p>
-              <strong>Country:</strong> {selectedUserDetails.location?.country}
+              <strong>Country:</strong> {selectedUserDetails.location.country}
             </p>
           </ModalContent>
         </UserModalWrapper>

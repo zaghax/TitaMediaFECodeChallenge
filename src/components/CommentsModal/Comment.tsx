@@ -1,7 +1,7 @@
-import { commentDataTypes } from '../../types/types'
+import { responseDataArrayTypes } from '../../types/types'
 
 interface commentPropTypes {
-  commentData: commentDataTypes
+  commentData: responseDataArrayTypes
 }
 
 const Comment = ({ commentData }: commentPropTypes) => {
