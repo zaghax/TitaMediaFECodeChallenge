@@ -1,4 +1,4 @@
-import { StoreState, responseDataTypes, postDataTypes } from '../types/types'
+import { StoreState, responseDataTypes, postDataTypes, userLoggedDataTypes } from '../types/types'
 
 const initialStore: StoreState = {
   tagSelected: 'DOGS',
@@ -8,6 +8,7 @@ const initialStore: StoreState = {
   isCommentsModalOpen: false,
   isUserDetailsModalOpen: false,
   selectedUserDetails: {},
+  loggedUserInfo: null,
 }
 
 export type ActionsType =
@@ -17,6 +18,7 @@ export type ActionsType =
   | { type: 'setIsCommentsModalOpen'; payload: boolean }
   | { type: 'setIsUserDetailsModalOpen'; payload: boolean }
   | { type: 'setSelectedUserDetails'; payload: responseDataTypes | undefined }
+  | { type: 'setLoggedUserInfo'; payload: userLoggedDataTypes | null }
 
 const storeReducer = (state: StoreState, action: ActionsType): StoreState => {
   switch (action.type) {
@@ -49,6 +51,11 @@ const storeReducer = (state: StoreState, action: ActionsType): StoreState => {
       return {
         ...state,
         selectedUserDetails: action.payload,
+      }
+    case 'setLoggedUserInfo':
+      return {
+        ...state,
+        loggedUserInfo: action.payload,
       }
     default:
       return state

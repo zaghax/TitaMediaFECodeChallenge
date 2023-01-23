@@ -57,6 +57,10 @@ export interface responseDataTypes {
   error?: string
 }
 
+export interface userLoggedDataTypes {
+  givenName?: string
+  picture?: string
+}
 export interface StoreState {
   tagSelected: string
   postDataResponse: responseDataTypes | undefined
@@ -65,6 +69,7 @@ export interface StoreState {
   isCommentsModalOpen: boolean
   isUserDetailsModalOpen: boolean
   selectedUserDetails: responseDataTypes | undefined
+  loggedUserInfo: userLoggedDataTypes | null
 }
 
 export type responseDataArrayTypes = userDataTypes[] | postDataTypes[] | commentDataTypes[]

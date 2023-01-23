@@ -22,6 +22,7 @@ export default createGlobalStyle<GlobalProps>`
 
     body {
         position: relative;
+        padding-top: 59px;
     }
     
     a, a:visited {
